@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Melbourne Plumbing Co - Fast, Reliable Plumbing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --blue: #1565c0;
+      --blue-mid: #1976d2;
+      --blue-light: #42a5f5;
+      --orange: #f57c00;
+      --orange-light: #ffa726;
+      --white: #ffffff;
+      --off-white: #f4f6f9;
+      --grey: #8a9bb0;
+      --grey-light: #e8edf4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: var(--orange);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--white);
+      text-decoration: none;
+      border: 2px solid var(--orange);
+      padding: 9px 22px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .nav-phone:hover { background: var(--orange); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 48px 80px;
+      gap: 40px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(21,101,192,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(245,124,0,0.08) 0%, transparent 60%),
+        linear-gradient(160deg, #0a1628 0%, #0d1f3c 100%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,124,0,0.15);
+      border: 1px solid rgba(245,124,0,0.4);
+      color: var(--orange-light);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(52px, 8vw, 88px);
+      font-weight: 900;
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero h1 span { color: var(--orange); }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--grey);
+      line-height: 1.6;
+      max-width: 480px;
+      margin-bottom: 40px;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--orange);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 6px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-primary:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px 28px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--orange);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--grey);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* ── SERVICES ── */
+    .section {
+      padding: 100px 48px;
+    }
+
+    .section-light {
+      background: var(--off-white);
+      color: var(--navy);
+    }
+
+    .section-mid {
+      background: #0d1f3c;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+
+    .section-light .section-label { color: var(--orange); }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 60px;
+    }
+
+    .section-light .section-title { color: var(--navy); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 36px 28px;
+      transition: background 0.2s, transform 0.2s;
+      cursor: default;
+    }
+
+    .service-card:hover {
+      background: rgba(21,101,192,0.2);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .service-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .service-desc {
+      font-size: 14px;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+
+    /* ── WHY ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .why-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 36px 28px;
+      border-left: 5px solid var(--orange);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    .why-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    .why-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .why-desc {
+      font-size: 14px;
+      color: #4a5568;
+      line-height: 1.6;
+    }
+
+    /* ── AREAS ── */
+    .areas-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .area-tag {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--grey);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+
+    .area-tag:hover {
+      background: rgba(21,101,192,0.3);
+      color: var(--white);
+      border-color: var(--blue-light);
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--blue) 0%, #0d47a1 100%);
+      padding: 100px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .cta-section > * { position: relative; z-index: 1; }
+
+    .cta-section h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 40px;
+    }
+
+    .cta-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--orange-light);
+      text-decoration: none;
+      margin-bottom: 32px;
+      display: block;
+      letter-spacing: 1px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060e1a;
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--grey);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    /* ── EMERGENCY BANNER ── */
+    .emergency-bar {
+      background: var(--orange);
+      text-align: center;
+      padding: 10px 48px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+    }
+
+    .emergency-bar a {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    nav { top: 40px; }
+    .hero { padding-top: 160px; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 24px; top: 36px; }
+      .emergency-bar { font-size: 13px; padding: 8px 16px; }
+      .hero { padding: 140px 24px 80px; flex-direction: column; align-items: flex-start; }
+      .hero-stats { flex-direction: row; flex-wrap: wrap; margin-top: 32px; }
+      .section { padding: 70px 24px; }
+      .cta-section { padding: 70px 24px; }
+      footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Emergency Bar -->
+  <div class="emergency-bar">
+    🚨 24/7 Emergency Plumbing - <a href="tel:0400000000">Call Now: 0400 000 000</a>
+  </div>
+
+  <!-- Nav -->
+  <nav>
+    <div class="logo">
+      <div class="logo-icon">🔧</div>
+      Melbourne Plumbing Co
+    </div>
+    <a href="tel:0400000000" class="nav-phone">📞 0400 000 000</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">⚡ Available 24/7 across Melbourne</div>
+      <h1>Fast.<br/>Reliable.<br/><span>Plumbing.</span></h1>
+      <p class="hero-sub">Licensed Melbourne plumbers on call around the clock. From burst pipes to blocked drains - we show up fast and get it done right.</p>
+      <div class="hero-actions">
+        <a href="tel:0400000000" class="btn-primary">📞 Call Now</a>
+        <a href="#services" class="btn-secondary">Our Services →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Emergency Service</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5★</div>
+          <div class="stat-label">Google Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section-mid" id="services">
+    <div class="section-label">What We Do</div>
+    <div class="section-title">Our Services</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">💧</div>
+        <div class="service-name">Blocked Drains</div>
+        <div class="service-desc">Fast diagnosis and clearing of blocked drains using professional-grade equipment.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔥</div>
+        <div class="service-name">Hot Water Systems</div>
+        <div class="service-desc">Installation, repair and replacement of all hot water system brands.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚿</div>
+        <div class="service-name">Leaking Taps</div>
+        <div class="service-desc">Fix dripping taps, showers and toilets before they cost you a fortune on your water bill.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚨</div>
+        <div class="service-name">Emergency Plumbing</div>
+        <div class="service-desc">Burst pipes, flooding, gas leaks - we respond fast, 24 hours a day, 7 days a week.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏗️</div>
+        <div class="service-name">Bathroom Renovations</div>
+        <div class="service-desc">Complete plumbing solutions for new builds and bathroom renovations.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⛽</div>
+        <div class="service-name">Gas Fitting</div>
+        <div class="service-desc">Licensed gas fitting for appliances, BBQs, heaters and new connections.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="section section-light">
+    <div class="section-label">Why Choose Us</div>
+    <div class="section-title">The Melbourne Plumbing Difference</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Fast Response</div>
+        <div class="why-desc">We aim to be on-site within 60 minutes for emergencies. No waiting around all day.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">✅</div>
+        <div class="why-title">Fully Licensed</div>
+        <div class="why-desc">All work carried out by licensed, insured plumbers. Victorian plumbing licence held.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <div class="why-title">Upfront Pricing</div>
+        <div class="why-desc">No hidden fees. We quote before we start so you know exactly what you're paying.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌙</div>
+        <div class="why-title">24/7 Availability</div>
+        <div class="why-desc">Plumbing emergencies don't keep business hours. Neither do we.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas -->
+  <section class="section section-mid">
+    <div class="section-label">Coverage</div>
+    <div class="section-title">Serving All Melbourne Suburbs</div>
+    <div class="areas-list">
+      <span class="area-tag">CBD</span>
+      <span class="area-tag">Southbank</span>
+      <span class="area-tag">Richmond</span>
+      <span class="area-tag">St Kilda</span>
+      <span class="area-tag">Fitzroy</span>
+      <span class="area-tag">Collingwood</span>
+      <span class="area-tag">Brunswick</span>
+      <span class="area-tag">Footscray</span>
+      <span class="area-tag">Sunshine</span>
+      <span class="area-tag">Werribee</span>
+      <span class="area-tag">Dandenong</span>
+      <span class="area-tag">Frankston</span>
+      <span class="area-tag">Noble Park</span>
+      <span class="area-tag">Ringwood</span>
+      <span class="area-tag">Box Hill</span>
+      <span class="area-tag">Doncaster</span>
+      <span class="area-tag">Heidelberg</span>
+      <span class="area-tag">Epping</span>
+      <span class="area-tag">Craigieburn</span>
+      <span class="area-tag">Melton</span>
+      <span class="area-tag">+ All suburbs</span>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Need a Plumber<br/>Right Now?</h2>
+    <p>Don't wait - get in touch and we'll have someone with you fast.</p>
+    <a href="tel:0400000000" class="cta-phone">📞 0400 000 000</a>
+    <div>
+      <a href="tel:0400000000" class="btn-primary" style="margin: 0 auto; display: inline-flex;">Call Now — We Answer 24/7</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Melbourne Plumbing Co. All rights reserved. VIC Plumbing Licence #XXXXX</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="tel:0400000000">0400 000 000</a>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       PASTE YOUR VOICEFLOW EMBED CODE HERE
+       Replace the comment below with your Voiceflow script tag
+       ============================================================ -->
+
+  <!-- VOICEFLOW CHATBOT - PASTE YOUR CODE BELOW THIS LINE -->
+
+
+  <!-- END VOICEFLOW CODE -->
+
+</body>
+</html>
