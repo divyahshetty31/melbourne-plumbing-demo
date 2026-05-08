@@ -661,19 +661,22 @@
 
   <!-- VOICEFLOW CHATBOT - PASTE YOUR CODE BELOW THIS LINE -->
 <!-- BOTPRESS CHATBOT -->
-<script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+  <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2026/05/05/06/20260505060911-PMZYNWEI.js" defer></script>
 <script>
-  var interval = setInterval(function() {
-    if (window.botpress && window.botpress.sendMessage) {
-      clearInterval(interval);
+  function tryOpen() {
+    if (window.botpress && window.botpress.open) {
       window.botpress.open();
       setTimeout(function() {
         window.botpress.sendMessage("Hi");
-      }, 1000);
+      }, 1500);
+    } else {
+      setTimeout(tryOpen, 500);
     }
-  }, 500);
-</script>  <!-- END VOICEFLOW CODE -->
+  }
+  setTimeout(tryOpen, 3000);
+</script>
+<!-- END VOICEFLOW CODE -->
 
 </body>
 </html>
