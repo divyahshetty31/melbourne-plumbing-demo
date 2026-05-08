@@ -666,7 +666,13 @@
 <script>
   window.addEventListener("load", function() {
     setTimeout(function() {
-      window.botpress.sendMessage("Hi");
+      var btn = document.querySelector('.bpFab');
+      if (btn) {
+        btn.click();
+        setTimeout(function() {
+          window.botpress.sendMessage("Hi");
+        }, 1000);
+      }
     }, 2000);
   });
 </script>
